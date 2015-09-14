@@ -43,6 +43,10 @@ class IssueTemplatesController < ApplicationController
   end
 
   def show
+    if @project != @issue_template.project
+      render_403
+      return
+    end
   end
 
   def new

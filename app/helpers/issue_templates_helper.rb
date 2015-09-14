@@ -15,4 +15,12 @@ module IssueTemplatesHelper
     trackers = trackers.collect { |obj| [obj.name, obj.id] }
     trackers
   end
+
+  def link_to_template(template, options={})
+    if template.try(:project).present? && (template.project == @project || User.current.allowed_to?(:edit_issue_templates, template.project))
+      link_to template.title, {:id => template.id, :project_id => template.project, :action => 'show'}, {:title => template.note}
+    else
+      template.title
+    end
+  end
 end
