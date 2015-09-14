@@ -27,7 +27,7 @@
       <h3 class="template_tracker"><%= tracker.name %></h3>
       <%= non_project_tracker_msg(project_tracker?(tracker.id, @project)) %>
 
-      <table class="list issues">
+      <table class="list">
         <thead>
         <tr>
           <th><%= l(:issue_template_name) %></th>
@@ -43,18 +43,18 @@
         <tbody>
         <% @template_map[tracker].each do |issue_template| %>
             <tr class="<%= cycle('odd', 'even') %> issue_template issue">
-              <td>
+              <td class="name">
                 <%= link_to_template(issue_template) %>
                 <a class="icon template_tooltip" href="#" title="<%= l(:label_preview) %>"
                    onclick="checkExpand('template_description-<%= issue_template.id %>');"></a>
               </td>
               <td class="author"><%= link_to_user(issue_template.author) %></td>
-              <td><%= format_time(issue_template.updated_on)%> </td>
-              <td class="center"><%= checked_image issue_template.is_default? %></td>
-              <td class="center"><%= checked_image issue_template.enabled? %></td>
+              <td class="updated_on"><%= format_time(issue_template.updated_on)%> </td>
+              <td class="tick"><%= checked_image issue_template.is_default? %></td>
+              <td class="tick"><%= checked_image issue_template.enabled? %></td>
 
               <% if authorize_for('issue_templates', 'edit') %>
-                  <td>
+                  <td class="reorder">
                     <%= issue_template.first? ? '':
                             link_to(image_tag('2uparrow.png', alt: l(:label_sort_highest)),
                                     { action: 'move', id: issue_template, to: :to_top },
