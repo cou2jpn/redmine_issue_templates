@@ -31,7 +31,6 @@
         <thead>
         <tr>
           <th><%= l(:issue_template_name) %></th>
-          <th><%= l(:field_tracker) %></th>
           <th><%= l(:field_author) %></th>
           <th><%= l(:field_updated_on) %></th>
           <th><%= l(:field_is_default) %></th>
@@ -49,7 +48,6 @@
                 <a class="icon template_tooltip" href="#" title="<%= l(:label_preview) %>"
                    onclick="checkExpand('template_description-<%= issue_template.id %>');"></a>
               </td>
-              <td><%=h issue_template.tracker.name %></td>
               <td class="author"><%= link_to_user(issue_template.author) %></td>
               <td><%= format_time(issue_template.updated_on)%> </td>
               <td class="center"><%= checked_image issue_template.is_default? %></td>

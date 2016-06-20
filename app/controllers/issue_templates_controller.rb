@@ -16,7 +16,7 @@ class IssueTemplatesController < ApplicationController
     project_templates = IssueTemplate.search_by_project(project_id)
 
     # pick up used tracker ids
-    tracker_ids = project_templates.pluck(:tracker_id).uniq
+    tracker_ids = project_templates.collect(&:tracker).uniq.sort.collect(&:id)
 
     @template_map = {}
     tracker_ids.each do |tracker_id|

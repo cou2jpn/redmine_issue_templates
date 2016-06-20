@@ -14,7 +14,7 @@ class GlobalIssueTemplatesController < ApplicationController
   # Action for global template : Admin right is required.
   #
   def index
-    @trackers = Tracker.all
+    @trackers = Tracker.all.sort
     @template_map = {}
     @trackers.each do |tracker|
       tracker_id = tracker.id
